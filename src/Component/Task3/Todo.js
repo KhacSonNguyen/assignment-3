@@ -30,11 +30,20 @@ function Todo() {
         setIncompleteTasks(newList);
     }
 
+    function onEdit(id, text) {
+        let newList = [...incompleteTasks];
+        newList = newList.map(obj =>
+            obj.id === id ? { ...obj, text: text } : obj
+        );
+        setIncompleteTasks(newList);
+    }
+
     let listIncompleteTasks = incompleteTasks.map((item, key) => {
-        return <Task key={key} value={item} onDeleteFromParent={onDeleteFromParent}/>
+        return <Task key={key} value={item} onDeleteFromParent={onDeleteFromParent} onEditFromParent={onEdit}/>
     })
 
     function addNewTask() {
+        if (text.length === 0) return;
         let item = {
             id: incompleteTasks.length + 1,
             text: text,
@@ -53,7 +62,7 @@ function Todo() {
                 <h2>TODO LIST</h2>
                 <h3>Add Item</h3>
                 <p>
-                    <input id="new-task" type="text" value={text} onChange={onChangeText}/>
+                    <input id="new-task" type="text" value={text} onChange={onChangeText} style={{width: "95%"}}/>
                     <button onClick={addNewTask}>Add</button>
                 </p>
 
