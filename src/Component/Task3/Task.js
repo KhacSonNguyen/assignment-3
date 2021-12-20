@@ -3,21 +3,26 @@ import {useState} from "react";
 function Task(props) {
     const [innerText, setInnerText] = useState(props.value.text);
     const [isEditMode, setIsEditMode] = useState(false);
+
     function onDelete(id) {
         props.onDeleteFromParent(id);
     }
+
     function onEdit() {
         setIsEditMode(true);
     }
+
     function onTextChange(e) {
         setInnerText(e.target.value);
     }
+
     function handleKeyPress(event) {
         if(event.key === 'Enter'){
             props.onEditFromParent(props.value.id, innerText);
             setIsEditMode(false);
         }
     }
+
     return (
         <li className={isEditMode ? "editMode" : ""}>
             <input type="checkbox" />

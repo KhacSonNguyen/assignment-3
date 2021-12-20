@@ -17,7 +17,7 @@ function Todo() {
         },
         {
             id: 3,
-            text: 'Send mail',
+            text: 'Check mail',
             status: 0,
         }
     ]);
@@ -45,13 +45,14 @@ function Todo() {
     function addNewTask() {
         if (text.length === 0) return;
         let item = {
-            id: incompleteTasks.length + 1,
+            id: Math.floor(Math.random() * 10000000 + 1),
             text: text,
             status: 0,
         }
         setIncompleteTasks([...incompleteTasks, item]);
         setText('');
     }
+
     function onChangeText(e) {
         setText(e.target.value);
     }
@@ -71,15 +72,15 @@ function Todo() {
                     {listIncompleteTasks}
                 </ul>
 
-                {/*<h3>Completed</h3>*/}
-                {/*<ul id="completed-tasks">*/}
-                {/*    <li>*/}
-                {/*        <input type="checkbox" checked /><label>See the Doctor</label>*/}
-                {/*        <input type="text" />*/}
-                {/*        <button className="edit">Edit</button>*/}
-                {/*        <button className="delete">Delete</button>*/}
-                {/*    </li>*/}
-                {/*</ul>*/}
+                <h3>Completed</h3>
+                <ul id="completed-tasks">
+                    <li>
+                        <input type="checkbox" checked /><label>See the Doctor</label>
+                        <input type="text" />
+                        <button className="edit">Edit</button>
+                        <button className="delete">Delete</button>
+                    </li>
+                </ul>
             </div>
         </div>
     );
